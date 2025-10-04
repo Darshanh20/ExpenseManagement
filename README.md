@@ -1,142 +1,133 @@
-# ExesMan – Expense Management System
+ExesMan – Expense Management System
+A web-based Expense Management System that automates and streamlines expense reimbursements for companies, built with the MERN stack.
 
-**Team Members:**  
-- Om Chauhan  
-- Ansh Patel  
-- Trushar Patel  
-- Darshan Hotchandani  
+Team Members:
 
----
+Om Chauhan
 
-## Project Overview
+Ansh Patel
 
-**ExesMan** is a web-based **Expense Management System** that automates expense reimbursements for companies.  
-It addresses common challenges with manual expense processes:  
+Trushar Patel
 
-- Time-consuming approvals  
-- Error-prone workflows  
-- Lack of transparency  
+Darshan Hotchandani
 
-The system provides:  
+📖 Project Overview
+ExesMan addresses the common challenges associated with manual expense processes, which are often time-consuming, prone to errors, and lack transparency. This system provides a robust solution with:
 
-- Role-based access (Admin, Manager, Employee)  
-- Multi-level approval workflows  
-- Conditional approval rules  
-- OCR for automatic receipt scanning  
-- Multi-currency support  
+Role-Based Access Control (Admin, Manager, Employee)
 
----
+Configurable, Multi-Level Approval Workflows
 
-## Features
+Support for Conditional Approval Rules
 
-### Authentication & User Management
-- Signup/Login for employees, managers, and admins  
-- First signup auto-creates the company and admin  
-- Admin can:
-  - Create Employees & Managers  
-  - Assign/change roles  
-  - Define manager relationships  
+OCR for automatic receipt scanning
 
-### Expense Submission (Employee)
-- Submit expenses (Amount, Category, Description, Date, Receipt)  
-- View expense history (Approved, Rejected, Pending)  
-- OCR auto-read receipts  
+Multi-Currency support with automatic conversion
 
-### Approval Workflow (Manager/Admin)
-- Multi-level approvals (Manager → Finance → Director)  
-- Conditional rules:
-  - **Percentage rule** (e.g., 60% approval)  
-  - **Specific approver rule** (e.g., CFO approval)  
-  - **Hybrid rules** combining both  
+✨ Features
+Authentication & User Management
+Signup/Login for all user roles.
 
-### Currency Handling
-- Company default currency on signup  
-- Employee can submit in any currency  
-- Automatic conversion to company currency using APIs  
+The first signup automatically creates the Company and the first Admin account.
 
----
+The Admin can:
 
-## Tech Stack
+Create Employees & Managers.
 
-- **Frontend:** React, Vite, Tailwind CSS  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB (managed via MongoDB Compass)  
-- **Authentication:** JWT / token-based auth  
-- **OCR:** Tesseract.js (or similar)  
-- **APIs:**  
-  - Country & currency: `https://restcountries.com/v3.1/all?fields=name,currencies`  
-  - Currency conversion: `https://api.exchangerate-api.com/v4/latest/{BASE_CURRENCY}`  
+Assign and change user roles.
 
----
+Define manager-employee reporting relationships.
 
-## Folder Structure (Frontend)
+Expense Submission (Employee)
+Submit detailed expense claims (Amount, Category, Description, Date, Receipt).
 
-src/
-├─ components/ # Reusable UI components
-├─ pages/ # Login, Signup, Dashboard pages
-├─ routes/ # Protected Routes / React Router setup
-├─ utils/ # Helpers (auth, API calls, OCR)
-└─ App.jsx # Main app with routing
+View a complete history of their expenses with their current status (Approved, Rejected, Pending).
 
----
+Utilize OCR to auto-read and pre-fill expense details from uploaded receipts.
 
-## Installation & Setup
+Approval Workflow (Manager/Admin)
+Handle multi-level approvals (e.g., Manager → Finance → Director).
 
-1. Clone the repository:
+Implement powerful conditional rules:
 
-git clone <repo-url>
+Percentage rule (e.g., approved if 60% of approvers agree).
+
+Specific approver rule (e.g., auto-approved if the CFO approves).
+
+Hybrid rules that combine both percentage and specific approver logic.
+
+Currency Handling
+The company's default currency is set on signup.
+
+Employees can submit expenses in any currency.
+
+The system uses an external API for real-time exchange rates to automatically convert and display amounts in the company's default currency for approvers.
+
+🛠️ Tech Stack
+Category
+
+Technology
+
+Frontend
+
+React, Vite, Tailwind CSS, Framer Motion
+
+Backend
+
+Node.js, Express.js
+
+Database
+
+MongoDB (managed via MongoDB Compass or Atlas)
+
+Authentication
+
+JSON Web Tokens (JWT), bcrypt.js
+
+OCR
+
+Tesseract.js (or similar client-side library)
+
+External APIs
+
+restcountries.com (for currencies), exchangerate-api.com (for conversions)
+
+🚀 Installation & Setup
+1. Clone the Repository
+git clone <your-repo-url>
 cd ExesMan
-Install frontend dependencies:
 
-bash
-Copy code
-cd client
-npm install
-npm run dev
-Install backend dependencies:
-
-bash
-Copy code
+2. Setup Backend (server)
+# Navigate to the server directory
 cd server
+
+# Install dependencies
 npm install
-Setup MongoDB:
 
-Open MongoDB Compass
+Create a .env file in the server root and add your MongoDB connection string and a JWT secret.
 
-Create a database exesman
+# Example for MongoDB Compass (local)
+MONGO_URI="mongodb://127.0.0.1:27017/exesman"
 
-Update .env with your MongoDB connection string:
+# Example for MongoDB Atlas (cloud)
+# MONGO_URI="mongodb+srv://<username>:<password>@cluster0.mongodb.net/exesman?retryWrites=true&w=majority"
 
-env
-Copy code
-MONGO_URI="mongodb+srv://<username>:<password>@cluster0.mongodb.net/exesman?retryWrites=true&w=majority"
-Start backend server:
+JWT_SECRET="your_super_secret_key"
+PORT=5000
 
-bash
-Copy code
+Then, start the backend server:
+
+# In the /server directory
 npm run dev
-Usage
-First signup → Admin account auto-created → redirected to Admin Dashboard
 
-Admin can create Employee and Manager accounts
+3. Setup Frontend (client)
+# Navigate to the client directory from the root
+cd ../client
 
-Employees submit expenses → Managers/Admins approve
+# Install dependencies
+npm install
 
-Role-based dashboards:
+Then, start the frontend development server:
 
-/admin → Admin Dashboard
-
-/manager → Manager Dashboard
-
-/employee → Employee Dashboard
-
-Future Enhancements
-Email notifications on approvals/rejections
-
-Export expense reports as PDF/Excel
-
-Advanced OCR for multi-line receipts
-
-Real-time currency rate integration
-
-
+# In the /client directory
+npm run dev
