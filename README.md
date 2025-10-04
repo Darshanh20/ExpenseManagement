@@ -78,16 +78,12 @@ src/
 ├─ utils/ # Helpers (auth, API calls, OCR)
 └─ App.jsx # Main app with routing
 
-yaml
-Copy code
-
 ---
 
 ## Installation & Setup
 
 1. Clone the repository:
 
-```bash
 git clone <repo-url>
 cd ExesMan
 Install frontend dependencies:
