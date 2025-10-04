@@ -143,11 +143,4 @@ Advanced OCR for multi-line receipts
 
 Real-time currency rate integration
 
-yaml
-Copy code
 
----
-
-If you want, I can also **add a table of contents and badges** to make it look like a **professional GitHub README** ready to publish.  
-
-Do you want me to do that next?
