@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const config = require('./src/config');
 
 const authRouter = require('./src/routes/auth');
@@ -11,7 +12,13 @@ const managerRouter = require('./src/routes/manager');
 const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
-const PORT = config.port || 3000;
+const PORT = config.port || 5000;
+
+// Enable CORS for all routes
+app.use(cors({
+  origin: 'http://localhost:5173', // Frontend URL
+  credentials: true
+}));
 
 app.use(express.json());
 

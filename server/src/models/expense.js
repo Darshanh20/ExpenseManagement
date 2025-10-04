@@ -10,24 +10,29 @@ const approvalSchema = new Schema(
       enum: ['PENDING', 'APPROVED', 'REJECTED'],
       default: 'PENDING',
     },
-    commentedAt: { type: Date },
-    comment: { type: String },
+    comments: { type: String },
   },
   { _id: false }
 );
 
 const expenseSchema = new Schema(
   {
-    amount: { type: Number, required: true },
-    description: { type: String },
-    date: { type: Date, default: Date.now },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    approvals: { type: [approvalSchema], default: [] },
+    amount: { type: Number, required: true },
+    currency: { type: String, required: true, default: 'USD' },
+    category: { type: String, required: true },
+    description: { type: String },
+    date: { type: Date, required: true },
     status: {
       type: String,
       enum: ['PENDING', 'APPROVED', 'REJECTED'],
       default: 'PENDING',
     },
+    receipt: { type: String }, // URL or path to the receipt file
+    receiptFile: { type: Buffer }, // For storing the actual PDF file
+    receiptFileName: { type: String }, // Original filename of the receipt
+    receiptFileType: { type: String }, // MIME type of the receipt file
+    approvals: [approvalSchema],
   },
   { timestamps: true }
 );

@@ -1,4 +1,4 @@
-const { Expense } = require('../models');
+const { Expense, User } = require('../models');
 
 // Get all expenses where the approvals array has a pending approval for this manager
 async function getApprovalQueue(req, res, next) {
@@ -49,4 +49,20 @@ async function decideOnExpense(req, res, next) {
   }
 }
 
-module.exports = { getApprovalQueue, decideOnExpense };
+// Get all employees assigned to the current manager
+async function getEmployees(req, res, next) {
+  try {
+    const manager = req.user;
+    if (!manager) return res.status(401).json({ message: 'Not authorized' });
+
+    const employees = await User.find({ manager: manager._id })
+      .select('-password')
+      .sort({ firstName: 1 });
+
+    res.json({ employees });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { getApprovalQueue, decideOnExpense, getEmployees };
